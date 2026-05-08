@@ -2,6 +2,8 @@
 
 Claude Code가 작업할 때 고양이가 화면에 나타나는 데스크탑 앱입니다.
 
+**[⬇ 최신 버전 다운로드](https://github.com/ymk-bot/cat-buddy/releases/latest)**
+
 | 상태 | 모습 | 조건 |
 |------|------|------|
 | **Working** | 화면 중앙에 크게 | Claude가 응답 중 |
