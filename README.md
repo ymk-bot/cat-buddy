@@ -46,6 +46,25 @@ videos/
 
 ---
 
+## 어떤 환경에서 작동하나요?
+
+Cat Buddy는 **Claude Code(공식 CLI)** 의 훅 시스템을 통해 동작합니다.
+
+| 환경 | 작동 여부 |
+|------|-----------|
+| Claude Code CLI (터미널) | ✅ |
+| VS Code + Claude Code 확장 | ✅ |
+| Cursor + Claude Code 확장 | ✅ |
+| JetBrains + Claude Code 확장 | ✅ |
+| Claude.ai 웹사이트 | ❌ |
+| Cursor 네이티브 Claude 통합 | ❌ |
+| Antigravity / 기타 AI 도구 | ❌ |
+
+**핵심 조건:** Claude Code(Anthropic 공식 CLI, `claude` 명령어)가 실행 중이어야 합니다.  
+어떤 IDE나 터미널에서 Claude Code를 쓰든 `~/.claude/settings.json` 훅을 전역으로 읽기 때문에 동일하게 작동합니다.
+
+---
+
 ## Claude Code 훅 설정
 
 Claude Code와 연동하려면 `~/.claude/settings.json` 파일에 아래 내용을 추가하세요.
