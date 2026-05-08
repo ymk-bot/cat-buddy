@@ -26,23 +26,49 @@ Claude Code가 작업할 때 고양이가 화면에 나타나는 데스크탑 �
 
 ### Option 1 — Portable (Recommended) / 포터블 버전 (권장)
 
+**Windows**
+
 1. Download `Cat.Buddy.win32.x64.zip` from [Releases](https://github.com/ymk-bot/cat-buddy/releases/latest)
 2. Extract to any folder
 3. Run `Cat Buddy.exe`
 
+**macOS (Apple Silicon)**
+
+1. Download `Cat.Buddy.darwin.arm64.zip` from [Releases](https://github.com/ymk-bot/cat-buddy/releases/latest)
+2. Extract to any folder
+3. Run `Cat Buddy.app`
+
 ---
+
+**Windows**
 
 1. [Releases](https://github.com/ymk-bot/cat-buddy/releases/latest) 에서 `Cat.Buddy.win32.x64.zip` 다운로드
 2. 원하는 폴더에 압축 해제
 3. `Cat Buddy.exe` 실행
 
+**macOS (Apple Silicon)**
+
+1. [Releases](https://github.com/ymk-bot/cat-buddy/releases/latest) 에서 `Cat.Buddy.darwin.arm64.zip` 다운로드
+2. 원하는 폴더에 압축 해제
+3. `Cat Buddy.app` 실행
+
 ### Option 2 — Run from source (Node.js required) / 직접 실행 (Node.js 필요)
 
+**Windows**
 ```bash
 git clone https://github.com/ymk-bot/cat-buddy.git
 cd cat-buddy
 npm install
 npm start
+```
+
+**macOS**
+```bash
+git clone https://github.com/ymk-bot/cat-buddy.git
+cd cat-buddy
+npm install
+chmod +x start.sh
+./start.sh
 ```
 
 ---
@@ -102,6 +128,7 @@ Add the following to `~/.claude/settings.json`. Create the file if it doesn't ex
 
 `~/.claude/settings.json` 파일에 아래 내용을 추가하세요. 파일이 없으면 새로 만들면 됩니다.
 
+**Windows**
 ```json
 {
   "hooks": {
@@ -119,6 +146,29 @@ Add the following to `~/.claude/settings.json`. Create the file if it doesn't ex
     }],
     "PermissionRequest": [{
       "hooks": [{"type": "command", "command": "curl.exe -s -m 1 -X POST http://localhost:3333/questioning || exit 0"}]
+    }]
+  }
+}
+```
+
+**macOS**
+```json
+{
+  "hooks": {
+    "UserPromptSubmit": [{
+      "hooks": [{"type": "command", "command": "curl -s -m 1 -X POST http://localhost:3333/working || exit 0"}]
+    }],
+    "PreToolUse": [{
+      "hooks": [{"type": "command", "command": "curl -s -m 1 -X POST http://localhost:3333/working || exit 0"}]
+    }],
+    "PostToolUse": [{
+      "hooks": [{"type": "command", "command": "curl -s -m 1 -X POST http://localhost:3333/working || exit 0"}]
+    }],
+    "Stop": [{
+      "hooks": [{"type": "command", "command": "curl -s -m 1 -X POST http://localhost:3333/sleeping || exit 0"}]
+    }],
+    "PermissionRequest": [{
+      "hooks": [{"type": "command", "command": "curl -s -m 1 -X POST http://localhost:3333/questioning || exit 0"}]
     }]
   }
 }

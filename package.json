@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . \"Cat Buddy\" --platform=win32 --arch=x64 --icon=\"cat icon.ico\" --out=dist --overwrite"
+    "build:win": "electron-packager . \"Cat Buddy\" --platform=win32 --arch=x64 --icon=\"cat icon.ico\" --out=dist --overwrite",
+    "build:mac": "electron-packager . \"Cat Buddy\" --platform=darwin --arch=arm64 --icon=\"cat icon.png\" --out=dist --overwrite"
   },
   "build": {
     "appId": "com.catbuddy.app",
