@@ -1,2 +1,2 @@
-Set-Location "C:\Users\계유미\Thinking pat"
+Set-Location $PSScriptRoot
 npm start

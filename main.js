@@ -1,7 +1,8 @@
-const { app, BrowserWindow, ipcMain, screen } = require('electron')
+const { app, BrowserWindow, ipcMain, screen, dialog } = require('electron')
 const http = require('http')
 
 let win
+let server = null
 let lastCenterX = null
 let lastCenterY = null
 let lastSmallX = null
@@ -72,7 +73,7 @@ function setQuestioning() {
 }
 
 function startServer() {
-  const server = http.createServer((req, res) => {
+  const srv = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/plain' })
 
     if (req.method === 'POST' && req.url === '/working') {
@@ -89,9 +90,15 @@ function startServer() {
     }
   })
 
-  server.listen(3333, '127.0.0.1', () => {
-    console.log('Cat Buddy 서버 시작됨: http://localhost:3333')
+  srv.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      dialog.showErrorBox('Cat Buddy', '포트 3333이 이미 사용 중입니다.\n다른 Cat Buddy 인스턴스가 실행 중인지 확인하세요.')
+      app.quit()
+    }
   })
+
+  srv.listen(3333, '127.0.0.1')
+  server = srv
 }
 
 function createWindow() {
@@ -143,7 +150,7 @@ ipcMain.on('state-questioning', setQuestioning)
 ipcMain.on('quit', () => app.quit())
 
 ipcMain.on('video-loaded', (event, { width, height }) => {
-  if (!win) return
+  if (!win || !width || !height) return
   const ratio = width / height
   const w = STATES.working.width
   const h = Math.round(w / ratio)
@@ -161,4 +168,5 @@ ipcMain.on('video-loaded', (event, { width, height }) => {
 })
 
 app.whenReady().then(createWindow)
+app.on('before-quit', () => server?.close())
 app.on('window-all-closed', () => app.quit())

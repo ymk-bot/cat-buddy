@@ -144,13 +144,13 @@
   </div>
 
   <div class="cat-sleeping hidden" id="catSleeping">
-    <video src="sleeping.mp4" autoplay loop muted playsinline></video>
+    <video autoplay loop muted playsinline></video>
     <div class="label">what's next? waiting for next move</div>
   </div>
 
   <div class="cat-questioning hidden" id="catQuestioning">
     <div class="question-mark">❓</div>
-    <video src="questioning.mp4" autoplay loop muted playsinline></video>
+    <video autoplay loop muted playsinline></video>
   </div>
 
   <script>
@@ -185,7 +185,7 @@
             videoEl.onloadedmetadata = null
           }
         }
-        videoEl.play()
+        videoEl.play().catch(() => {})
       }
     }
 
