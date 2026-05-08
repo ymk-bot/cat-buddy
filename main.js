@@ -4,6 +4,9 @@ const http = require('http')
 let win
 let lastCenterX = null
 let lastCenterY = null
+let lastSmallX = null
+let lastSmallY = null
+let currentState = 'working'
 
 const STATES = {
   working:     { width: 520, height: 520 },
@@ -13,6 +16,7 @@ const STATES = {
 
 function setWorking() {
   if (!win) return
+  currentState = 'working'
   const { width, height } = STATES.working
   const { width: sw, height: sh } = screen.getPrimaryDisplay().workAreaSize
   const cx = lastCenterX ?? Math.floor(sw / 2)
@@ -29,31 +33,27 @@ function setWorking() {
 
 function setSleeping() {
   if (!win) return
+  currentState = 'sleeping'
   win.setAspectRatio(0)
   const { width, height } = STATES.sleeping
   const { width: sw, height: sh } = screen.getPrimaryDisplay().workAreaSize
   win.setResizable(false)
-  win.setBounds({
-    x: sw - width - 20,
-    y: sh - height - 20,
-    width,
-    height,
-  })
+  const x = lastSmallX ?? sw - width - 20
+  const y = lastSmallY ?? sh - height - 20
+  win.setBounds({ x, y, width, height })
   win.webContents.send('show-sleeping')
 }
 
 function setQuestioning() {
   if (!win) return
+  currentState = 'questioning'
   win.setAspectRatio(0)
   const { width, height } = STATES.questioning
   const { width: sw, height: sh } = screen.getPrimaryDisplay().workAreaSize
   win.setResizable(false)
-  win.setBounds({
-    x: sw - width - 20,
-    y: sh - height - 20,
-    width,
-    height,
-  })
+  const x = lastSmallX ?? sw - width - 20
+  const y = lastSmallY ?? sh - height - 20
+  win.setBounds({ x, y, width, height })
   win.webContents.send('show-questioning')
 }
 
@@ -104,8 +104,13 @@ function createWindow() {
 
   win.on('moved', () => {
     const b = win.getBounds()
-    lastCenterX = b.x + Math.floor(b.width / 2)
-    lastCenterY = b.y + Math.floor(b.height / 2)
+    if (currentState === 'working') {
+      lastCenterX = b.x + Math.floor(b.width / 2)
+      lastCenterY = b.y + Math.floor(b.height / 2)
+    } else {
+      lastSmallX = b.x
+      lastSmallY = b.y
+    }
   })
 
   win.on('resized', () => {

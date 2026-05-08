@@ -230,9 +230,6 @@
     }
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === '1') showWorking()
-      if (e.key === '2') showSleeping()
-      if (e.key === '3') showQuestioning()
       if (e.key === 'Escape' && ipc) ipc.send('quit')
     })
 

@@ -99,7 +99,4 @@ Claude Code와 연동하려면 `~/.claude/settings.json` 파일에 아래 내용
 
 | 키 | 동작 |
 |----|------|
-| `1` | Working 상태로 전환 |
-| `2` | Sleeping 상태로 전환 |
-| `3` | Questioning 상태로 전환 |
 | `ESC` | 앱 종료 |
