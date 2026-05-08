@@ -4,9 +4,38 @@
   "description": "Claude Code와 함께하는 고양이 데스크탑 앱",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-packager . \"Cat Buddy\" --platform=win32 --arch=x64 --icon=\"cat icon.ico\" --out=dist --overwrite"
+  },
+  "build": {
+    "appId": "com.catbuddy.app",
+    "productName": "Cat Buddy",
+    "files": [
+      "main.js",
+      "index.html",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "videos",
+        "to": "videos",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "cat icon.ico"
+    },
+    "nsis": {
+      "oneClick": true,
+      "deleteAppDataOnUninstall": true
+    }
   },
   "devDependencies": {
-    "electron": "^28.0.0"
+    "@electron/packager": "^20.0.0",
+    "electron": "^28.0.0",
+    "electron-builder": "^26.8.1"
   }
 }
