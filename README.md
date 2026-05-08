@@ -26,35 +26,35 @@ Claude Code가 작업할 때 고양이가 화면에 나타나는 데스크탑 �
 
 ### Option 1 — Portable (Recommended) / 포터블 버전 (권장)
 
-**Windows**
+---
 
-1. Download `Cat.Buddy.win32.x64.zip` from [Releases](https://github.com/ymk-bot/cat-buddy/releases/latest)
-2. Extract to any folder
-3. Run `Cat Buddy.exe`
+#### 🪟 Windows
 
-**macOS (Apple Silicon)**
+> Download **`Cat.Buddy.win32.x64.zip`** from [Releases](https://github.com/ymk-bot/cat-buddy/releases/latest)
+>
+> [Releases](https://github.com/ymk-bot/cat-buddy/releases/latest) 에서 **`Cat.Buddy.win32.x64.zip`** 다운로드
 
-1. Download `Cat.Buddy.darwin.arm64.zip` from [Releases](https://github.com/ymk-bot/cat-buddy/releases/latest)
-2. Extract to any folder
-3. Run `Cat Buddy.app`
+1. Extract to any folder / 원하는 폴더에 압축 해제
+2. Run `Cat Buddy.exe` / `Cat Buddy.exe` 실행
 
 ---
 
-**Windows**
+#### 🍎 macOS
 
-1. [Releases](https://github.com/ymk-bot/cat-buddy/releases/latest) 에서 `Cat.Buddy.win32.x64.zip` 다운로드
-2. 원하는 폴더에 압축 해제
-3. `Cat Buddy.exe` 실행
+> Download **`Cat.Buddy.darwin.arm64.zip`** from [Releases](https://github.com/ymk-bot/cat-buddy/releases/latest)
+>
+> [Releases](https://github.com/ymk-bot/cat-buddy/releases/latest) 에서 **`Cat.Buddy.darwin.arm64.zip`** 다운로드
+>
+> ⚠️ For Intel Mac, download `Cat.Buddy.darwin.x64.zip` instead. / Intel Mac 사용자는 `Cat.Buddy.darwin.x64.zip` 을 받으세요.
 
-**macOS (Apple Silicon)**
+1. Extract to any folder / 원하는 폴더에 압축 해제
+2. Run `Cat Buddy.app` / `Cat Buddy.app` 실행
 
-1. [Releases](https://github.com/ymk-bot/cat-buddy/releases/latest) 에서 `Cat.Buddy.darwin.arm64.zip` 다운로드
-2. 원하는 폴더에 압축 해제
-3. `Cat Buddy.app` 실행
+---
 
 ### Option 2 — Run from source (Node.js required) / 직접 실행 (Node.js 필요)
 
-**Windows**
+**🪟 Windows**
 ```bash
 git clone https://github.com/ymk-bot/cat-buddy.git
 cd cat-buddy
@@ -62,7 +62,7 @@ npm install
 npm start
 ```
 
-**macOS**
+**🍎 macOS**
 ```bash
 git clone https://github.com/ymk-bot/cat-buddy.git
 cd cat-buddy
