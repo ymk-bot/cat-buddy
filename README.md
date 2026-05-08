@@ -56,32 +56,19 @@ Claude Code와 연동하려면 `~/.claude/settings.json` 파일에 아래 내용
 {
   "hooks": {
     "UserPromptSubmit": [{
-      "hooks": [{
-        "type": "command",
-        "command": "curl.exe -s -m 1 -X POST http://localhost:3333/working || exit 0",
-        "async": true
-      }]
+      "hooks": [{"type": "command", "command": "curl.exe -s -m 1 -X POST http://localhost:3333/working || exit 0"}]
     }],
     "PreToolUse": [{
-      "hooks": [{
-        "type": "command",
-        "command": "curl.exe -s -m 1 -X POST http://localhost:3333/working || exit 0",
-        "async": true
-      }]
+      "hooks": [{"type": "command", "command": "curl.exe -s -m 1 -X POST http://localhost:3333/working || exit 0"}]
+    }],
+    "PostToolUse": [{
+      "hooks": [{"type": "command", "command": "curl.exe -s -m 1 -X POST http://localhost:3333/working || exit 0"}]
     }],
     "Stop": [{
-      "hooks": [{
-        "type": "command",
-        "command": "curl.exe -s -m 1 -X POST http://localhost:3333/sleeping || exit 0",
-        "async": true
-      }]
+      "hooks": [{"type": "command", "command": "curl.exe -s -m 1 -X POST http://localhost:3333/sleeping || exit 0"}]
     }],
     "PermissionRequest": [{
-      "hooks": [{
-        "type": "command",
-        "command": "curl.exe -s -m 1 -X POST http://localhost:3333/questioning || exit 0",
-        "async": true
-      }]
+      "hooks": [{"type": "command", "command": "curl.exe -s -m 1 -X POST http://localhost:3333/questioning || exit 0"}]
     }]
   }
 }

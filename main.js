@@ -7,11 +7,18 @@ let lastCenterY = null
 let lastSmallX = null
 let lastSmallY = null
 let currentState = 'working'
+let isSettingBounds = false
 
 const STATES = {
   working:     { width: 520, height: 520 },
   sleeping:    { width: 195, height: 240 },
   questioning: { width: 195, height: 275 },
+}
+
+function setBoundsGuarded(bounds) {
+  isSettingBounds = true
+  win.setBounds(bounds)
+  setTimeout(() => { isSettingBounds = false }, 100)
 }
 
 function setWorking() {
@@ -22,12 +29,15 @@ function setWorking() {
   const cx = lastCenterX ?? Math.floor(sw / 2)
   const cy = lastCenterY ?? Math.floor(sh / 2)
   win.setResizable(true)
-  win.setBounds({
+  setBoundsGuarded({
     x: Math.floor(cx - width / 2),
     y: Math.floor(cy - height / 2),
     width,
     height,
   })
+  win.setAlwaysOnTop(false)
+  win.setAlwaysOnTop(true, 'screen-saver')
+  win.moveTop()
   win.webContents.send('show-working')
 }
 
@@ -40,7 +50,9 @@ function setSleeping() {
   win.setResizable(false)
   const x = lastSmallX ?? sw - width - 20
   const y = lastSmallY ?? sh - height - 20
-  win.setBounds({ x, y, width, height })
+  setBoundsGuarded({ x, y, width, height })
+  win.setAlwaysOnTop(true, 'screen-saver')
+  win.moveTop()
   win.webContents.send('show-sleeping')
 }
 
@@ -53,7 +65,9 @@ function setQuestioning() {
   win.setResizable(false)
   const x = lastSmallX ?? sw - width - 20
   const y = lastSmallY ?? sh - height - 20
-  win.setBounds({ x, y, width, height })
+  setBoundsGuarded({ x, y, width, height })
+  win.setAlwaysOnTop(true, 'screen-saver')
+  win.moveTop()
   win.webContents.send('show-questioning')
 }
 
@@ -99,10 +113,12 @@ function createWindow() {
     },
   })
 
+  win.setAlwaysOnTop(true, 'screen-saver')
   win.loadFile('index.html')
   startServer()
 
   win.on('moved', () => {
+    if (isSettingBounds) return
     const b = win.getBounds()
     if (currentState === 'working') {
       lastCenterX = b.x + Math.floor(b.width / 2)
@@ -136,7 +152,7 @@ ipcMain.on('video-loaded', (event, { width, height }) => {
   const { width: sw, height: sh } = screen.getPrimaryDisplay().workAreaSize
   const cx = lastCenterX ?? Math.floor(sw / 2)
   const cy = lastCenterY ?? Math.floor(sh / 2)
-  win.setBounds({
+  setBoundsGuarded({
     x: Math.floor(cx - w / 2),
     y: Math.floor(cy - h / 2),
     width: w,
