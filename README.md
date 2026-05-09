@@ -2,11 +2,21 @@
 
 A desktop companion app that shows a cat on your screen whenever Claude Code is working.
 
+Cat Buddy sits on top of your screen and reacts to what Claude Code is doing in real time.
+When Claude is thinking or using tools, your cat is busy at work. When Claude finishes,
+the cat curls up and waits. When Claude needs your permission, the cat bounces a question mark.
+It doesn't do anything useful — it just makes the wait a little less lonely.
+
 **[⬇ Download Latest](https://github.com/ymk-bot/cat-buddy/releases/latest)**
 
 ---
 
 Claude Code가 작업할 때 고양이가 화면에 나타나는 데스크탑 앱입니다.
+
+Cat Buddy는 화면 위에 올라앉아 Claude Code가 하는 일에 실시간으로 반응합니다.
+Claude가 생각하거나 툴을 쓸 때 고양이는 바쁘게 움직이고, 응답이 끝나면 조용히 기다리고,
+권한 요청이 오면 물음표를 튕기며 알려줍니다.
+딱히 생산적인 건 아닌데, 기다리는 시간이 조금 덜 외로워집니다.
 
 | State | Appearance | Trigger |
 |-------|-----------|---------|
@@ -184,11 +194,27 @@ Restart Claude Code or open `/hooks` after saving.
 
 ---
 
-## Keyboard Shortcuts / 키보드 단축키
+## Usage / 사용 방법
 
-Focus the app window to use shortcuts.  
-앱 창이 포커스된 상태에서 사용 가능합니다.
+### Resizing / 창 크기 조절
+
+The working state window (large, center screen) is freely resizable.
+Drag any corner or edge to adjust the size — Cat Buddy remembers it for next time.
+
+Working 상태(화면 중앙 큰 창)는 자유롭게 크기를 조절할 수 있습니다.
+모서리나 가장자리를 드래그해서 원하는 크기로 바꾸면 다음번에도 그 크기로 열립니다.
+
+### Moving / 창 위치 이동
+
+All states are draggable — click and drag anywhere on the window to reposition.
+
+모든 상태에서 창을 드래그해 위치를 옮길 수 있습니다.
+
+## Keyboard Shortcuts / 키보드 단축키
 
 | Key | Action |
 |-----|--------|
 | `ESC` | Quit app / 앱 종료 |
+
+> Tip: Click the cat window first to focus it before pressing ESC.  
+> 앱 창을 먼저 클릭해서 포커스한 뒤 ESC를 누르세요.
